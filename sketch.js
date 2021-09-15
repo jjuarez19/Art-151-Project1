@@ -19,9 +19,8 @@ function draw() {
   triangle(100, 150, 200, 150, 150, 50);
   pop();
   angle += radians(2);
-
+}
 function mousePressed() {
   bgColor = color( random(255), random(255), random(255) );
-  }
-    
+
 }
