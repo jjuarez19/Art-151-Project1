@@ -1,8 +1,8 @@
 var ball = {
   x: 300,
   y: 400,
-  xspeed:4,
-  yspeed:-3,
+  xspeed:6,
+  yspeed:-6,
 }
 
 var bgColor;
