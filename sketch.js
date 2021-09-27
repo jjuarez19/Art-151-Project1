@@ -5,21 +5,17 @@ var ball = {
   yspeed:-6,
 }
 
-var bgColor;
 var ballColor;
-var rectColor;
 let angle = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  bgColor = color( random(255), random(255), random(255) );
-  ballColor = color(random(255), random(255), random(255) );
-  rectColor = color(random(255), random(255), random(255) );
-
+  ballColor = color(random(255), random(255), random(255));
+  rupeeColor = color(random(255), random(255), random(255) );
+  alert("Repeatedly click your mouse to change the color of the background being drawn!")
 }
 
 function draw() {
-  // background(bgColor);
   push();
   translate(width/2, height/2);
   rotate(angle);
@@ -32,13 +28,15 @@ function draw() {
   bounce();
   display();
  
-  rectangle();
+  rupee();
   
-}  
+} 
+
 function move() {
   ball.x = ball.x + ball.xspeed;
   ball.y = ball.y + ball.yspeed;
 }
+
 function bounce() {
   if (ball.x > width || ball.x < 0) {
     ball.xspeed = ball.xspeed * -1;
@@ -50,7 +48,7 @@ function bounce() {
 
 function display(){
   stroke(0);
-  strokeWeight(4);
+  strokeWeight(1);
   fill(ballColor);
   ellipse(ball.x, ball.y, 50);
   ellipse(ball.x, ball.y, 50);
@@ -66,17 +64,32 @@ function triforce(){
   pop();
   angle += radians(2);
 }
-
-function rectangle(){
-  fill(rectColor);
-  translate(width / 2, height / 2);
-  let a = atan2(mouseY - height / 2, mouseX - width / 2);
-  rotate(a);
-  rect(0, 0, 140, 30);
+  
+function rupee() {
+   
+   translate(width / 2, height / 2);
+   stroke(0);
+   strokeWeight(2);
+   fill(rupeeColor);
+   let a = atan2(mouseY - height / 2, mouseX - width / 2);
+   rotate(a);
+   push();
+   beginShape();
+   vertex(0,-60);
+   vertex(30,-20);
+   vertex(30, 30);
+   vertex(0, 70);
+   vertex(-30, 30);
+   vertex(-30,-20);
+   vertex(0,-60);
+   endShape();
+   pop();
 }
 
 function mousePressed() {
   bgColor = color( random(255), random(255), random(255) );
   ballColor = color(random(255), random(255), random(255) );
   rectColor = color(random(255), random(255), random(255) );
+  rupeeColor = color(random(255), random(255), random(255) );
+
 }
