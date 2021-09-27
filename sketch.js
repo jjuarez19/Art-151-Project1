@@ -1,31 +1,33 @@
 var ball = {
   x: 300,
-  y: 200,
+  y: 400,
   xspeed:4,
-  yspeed:-3
+  yspeed:-3,
 }
+
 var bgColor;
+var ballColor;
 let angle = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   bgColor = color( random(255), random(255), random(255) );
+  ballColor = color(random(255), random(255), random(255) );
 }
 
 function draw() {
-  background(bgColor);
+  // background(bgColor);
   push();
   translate(width/2, height/2);
   rotate(angle);
+  
   fill(0);
   
-  // rectMode(CENTER);
-  // rect(0,0,100,50);
-  
+  triforce();
   move();
   bounce();
   display();
-  triforce();
+ 
 }  
 
 function move() {
@@ -45,12 +47,14 @@ function bounce() {
 function display(){
   stroke(0);
   strokeWeight(4);
-  noFill();
+  fill(ballColor);
   ellipse(ball.x, ball.y, 50);
-  ellipse(200,200,25);
+  ellipse(ball.x, ball.y, 50);
+
 }
 
 function triforce(){ 
+  
   triangle(50, 250, 250, 250, 150, 50);
   fill(255, 255, 0);
   triangle(50, 250, 150, 250, 100, 150);
@@ -62,4 +66,5 @@ function triforce(){
 
 function mousePressed() {
   bgColor = color( random(255), random(255), random(255) );
+  ballColor = color(random(255), random(255), random(255) );
 }
