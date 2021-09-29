@@ -1,8 +1,8 @@
 var ball = {
   x: 300,
   y: 400,
-  xspeed:6,
-  yspeed:-6,
+  xspeed:10,
+  yspeed:-10,
 }
 
 var ballColor;
@@ -10,9 +10,9 @@ let angle = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  ballColor = color(random(255), random(255), random(255));
   rupeeColor = color(random(255), random(255), random(255) );
-  alert("Repeatedly click your mouse to change the color of the background being drawn!")
+  
+alert("Ready for some sensory overload? Hit the OK button to begin. The Triforce logo will be constantly rotating around the center of the canvas, while continuously re-painting it's path. Simultaneously the bouncing ball will randomly paint the background of the canvas. The Rupee in the center will rotate in the direction of your cursor placement on the canvas. Want to avoid drawing over a cool portion of your background? Hold down any key on your keyboard and you will cause the ball and the rupee to turn transparent. Enjoy the random color goodness!")
 }
 
 function draw() {
@@ -20,16 +20,23 @@ function draw() {
   translate(width/2, height/2);
   rotate(angle);
   
-  fill(0);
+  if (keyIsPressed === true) {
+    fill(random(255), random(255), random(255), 1 );
+  } else {
+    fill(random(255), random(255), random(255));
+  }
   
+// Calls Triforce.  
   triforce();
-
+  
+//Calls ball functions.
   move();
   bounce();
   display();
- 
-  rupee();
   
+//Calls Rupee.
+  rupee();
+
 } 
 
 function move() {
@@ -48,11 +55,13 @@ function bounce() {
 
 function display(){
   stroke(0);
-  strokeWeight(1);
-  fill(ballColor);
+  strokeWeight(0.1);
+  if (keyIsPressed === true) {
+    fill(random(255), random(255), random(255), 1);
+  } else {
+    fill(random(255), random(255), random(255));
+  }
   ellipse(ball.x, ball.y, 50);
-  ellipse(ball.x, ball.y, 50);
-
 }
 
 function triforce(){  
@@ -66,11 +75,17 @@ function triforce(){
 }
   
 function rupee() {
-   
    translate(width / 2, height / 2);
    stroke(0);
    strokeWeight(2);
-   fill(rupeeColor);
+   fill(random(255), random(255), random(255));
+   
+   if (keyIsPressed === true) {
+    fill(random(255), random(255), random(255), 1 );
+  } else {
+    fill(random(255), random(255), random(255));
+  }
+  
    let a = atan2(mouseY - height / 2, mouseX - width / 2);
    rotate(a);
    push();
@@ -84,12 +99,4 @@ function rupee() {
    vertex(0,-60);
    endShape();
    pop();
-}
-
-function mousePressed() {
-  bgColor = color( random(255), random(255), random(255) );
-  ballColor = color(random(255), random(255), random(255) );
-  rectColor = color(random(255), random(255), random(255) );
-  rupeeColor = color(random(255), random(255), random(255) );
-
 }
